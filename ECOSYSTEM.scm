@@ -1,12 +1,12 @@
 ;; SPDX-License-Identifier: AGPL-3.0-or-later
 ;; SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
-;; ECOSYSTEM.scm — template-repo
+;; ECOSYSTEM.scm — labnote-ssg
 
 (ecosystem
   (version "1.0.0")
-  (name "template-repo")
-  (type "project")
-  (purpose "Project in the hyperpolymath ecosystem")
+  (name "labnote-ssg")
+  (type "satellite")
+  (purpose "MCP adapter hub for 28 static site generators")
 
   (position-in-ecosystem
     "Part of hyperpolymath ecosystem. Follows RSR guidelines.")
@@ -24,5 +24,5 @@
              (url "https://github.com/hyperpolymath/rhodium-standard-repositories")
              (relationship "standard")))
 
-  (what-this-is "Project in the hyperpolymath ecosystem")
-  (what-this-is-not "- NOT exempt from RSR compliance"))
+  (what-this-is "Satellite SSG adapter hub providing MCP adapters for 28 static site generators")
+  (what-this-is-not "- NOT the poly-ssg-mcp hub itself\n- NOT exempt from RSR compliance"))
