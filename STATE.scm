@@ -10,67 +10,19 @@
 
 ;;;; Metadata
 (define metadata
-  '((version . "0.4.0")
-    (updated . "2025-12-22")
-    (project . "labnote-ssg")
-    (phase . "v0.4 - Documentation & Testing Complete")))
+  '((version . "0.2.0") (updated . "2025-12-17") (project . "labnote-ssg")))
 
 ;;;; Current Position — 44-Component Matrix Tracking
 (define current-position
-  '((phase . "v0.4 - Documentation & Testing Complete")
-    (overall-completion . 90)
-
+  '((phase . "v0.2 - Security Hardening Complete")
+    (overall-completion . 50)
     (components
-     ;; 1. Adapter Core (28/28) ✓
-     ((adapter-core
-       ((status . "complete")
-        (completion . 100)
-        (count . "28/28")
-        (items
-         ((rust . ("zola" "mdbook" "cobalt"))
-          (elixir . ("serum" "nimble-publisher" "tableau"))
-          (haskell . ("hakyll" "ema"))
-          (clojure . ("cryogen" "perun" "babashka"))
-          (lisp . ("coleslaw" "frog" "pollen"))
-          (julia . ("franklin" "publish" "documenter"))
-          (scala . ("laika" "orchid" "scalatex"))
-          (other . ("fornax" "yocaml" "nimrod" "reggae" "marmot"
-                    "staticwebpages" "zotonic" "wub"))))))
-
-      ;; 2. Build System (4/4) ✓
-      (build-system
-       ((status . "complete")
-        (completion . 100)
-        (count . "4/4")
-        (items
-         ((justfile . "complete")
-          (mustfile . "complete")
-          (tool-versions . "complete")
-          (containerfile . "complete")))))
-
-      ;; 3. SCM Files (6/6) ✓
-      (scm-files
-       ((status . "complete")
-        (completion . 100)
-        (count . "6/6")
-        (items
-         ((meta . "complete")
-          (ecosystem . "complete")
-          (state . "complete")
-          (playbook . "complete")
-          (agentic . "complete")
-          (neurosym . "complete")))))
-
-      ;; 4. Testing (3/4)
-      (testing
-       ((status . "in-progress")
-        (completion . 75)
-        (count . "3/4")
-        (items
-         ((unit-tests . "complete")
-          (e2e-tests . "complete")
-          (integration-tests . "pending")
-          (ci-pipeline . "complete")))))
+     ((rsr-compliance ((status . "complete") (completion . 100)))
+      (security-policy ((status . "complete") (completion . 100)))
+      (adapter-implementation ((status . "complete") (completion . 100)))
+      (documentation ((status . "in-progress") (completion . 30)))
+      (testing ((status . "pending") (completion . 0)))
+      (ci-cd-verification ((status . "pending") (completion . 0)))))))
 
       ;; 5. Documentation (8/8) ✓
       (documentation
@@ -118,43 +70,22 @@
 ;;;; Critical Next Actions
 (define critical-next-actions
   '((immediate
-     (("Merge PR to main" . high)
-      ("Tag v0.4.0 release" . high)))
+     (("Verify CI/CD pipelines work" . high)
+      ("Add comprehensive tests" . high)))
     (this-week
-     (("Add integration tests with Docker" . medium)
-      ("Publish to package registry" . low)))))
+     (("Create CHANGELOG.md" . medium)
+      ("Expand README documentation" . medium)))))
 
 ;;;; Session History
 (define session-history
   '((snapshots
      ((date . "2025-12-15") (session . "initial") (notes . "SCM files added"))
      ((date . "2025-12-16") (session . "adapters") (notes . "28 SSG adapters integrated"))
-     ((date . "2025-12-17") (session . "security") (notes . "Security policy completed"))
-     ((date . "2025-12-22") (session . "tooling") (notes . "Build system, SCM expansion, cookbook, CI/CD"))
-     ((date . "2025-12-22") (session . "completion") (notes . "E2E tests, Nickel config, API docs, all placeholders fixed")))))
+     ((date . "2025-12-17") (session . "security") (notes . "Security policy completed, SCM files updated")))))
 
 ;;;; State Summary
 (define state-summary
   '((project . "labnote-ssg")
-    (version . "0.4.0")
-    (completion . 90)
-    (phase . "Documentation & Testing Complete")
+    (completion . 50)
     (blockers . 0)
-    (updated . "2025-12-22")
-    (next-milestone . "v1.0 - Production Ready")))
-
-;;;; Component Completion Tracker — 44 Component Matrix
-(define component-completion
-  '((total-components . 44)
-    (completed . 40)
-    (in-progress . 3)
-    (pending . 1)
-    (breakdown
-     ((adapter-core . "28/28 ✓")
-      (build-system . "4/4 ✓")
-      (scm-files . "6/6 ✓")
-      (testing . "3/4")
-      (documentation . "8/8 ✓")
-      (configuration . "3/3 ✓")
-      (ci-cd . "3/3 ✓")))
-    (summary . "40/44 components complete (90%)")))
+    (updated . "2025-12-17")))

@@ -3,8 +3,7 @@
 ;;; META.scm — labnote-ssg
 
 (define-module (labnote-ssg meta)
-  #:export (architecture-decisions development-practices design-rationale
-            component-matrix technology-stack))
+  #:export (architecture-decisions development-practices design-rationale))
 
 ;;;; Architecture Decision Records (ADRs)
 (define architecture-decisions
