@@ -7,103 +7,129 @@
 
 image:https://img.shields.io/badge/RSR-Gold-gold[RSR Gold]
 image:https://img.shields.io/badge/license-MIT%20OR%20AGPL--3.0--or--later-blue[License]
-image:https://img.shields.io/badge/MCP-compatible-green[MCP Compatible]
+image:https://img.shields.io/badge/poly--ssg-satellite-purple[poly-ssg satellite]
+image:https://img.shields.io/badge/stage-experimental-orange[Experimental]
 
-MCP adapter hub for 28 static site generators — part of the https://github.com/hyperpolymath[hyperpolymath] ecosystem.
+SciLab-based static site generator for lab notebooks.
+
+_Let matrices compute. Let figures render. Let science publish._
 
 toc::[]
 
-== Overview
+== For Who
 
-labnote-ssg provides Model Context Protocol (MCP) adapters for 28 different static site generators (SSGs). As a satellite project in the hyperpolymath ecosystem, it integrates with https://github.com/hyperpolymath/poly-ssg-mcp[poly-ssg-mcp] hub to provide a unified interface for working with diverse SSG tooling.
-
-=== Features
-
-* **28 SSG Adapters** — Support for major static site generators across multiple languages
-* **MCP Protocol** — Standard interface for AI-assisted development workflows
-* **Security-First** — Safe command execution with no shell injection vulnerabilities
-* **RSR Compliant** — Follows Rhodium Standard Repository guidelines
-
-== Supported SSGs
-
-[cols="1,1,2"]
+[cols="1,2"]
 |===
-|Language |SSG |Description
+|Audience |Why labnote-ssg
 
-|Rust |Zola |Fast SSG with Sass compilation and syntax highlighting
-|Rust |mdBook |Documentation/book generator for Rust projects
-|Rust |Cobalt |Simple, extensible static site generator
-|Elixir |Serum |Simple static website generator
-|Elixir |NimblePublisher |Markdown-based publishing engine
-|Elixir |Tableau |Static site generator using LiveView
-|Haskell |Hakyll |Flexible static site library
-|Haskell |Ema |Hot-reloading static site generator
-|Clojure |Cryogen |Static site generator written in Clojure
-|Clojure |Perun |Composable static site generator
-|Clojure |Babashka |Fast native Clojure scripting
-|Common Lisp |Coleslaw |Flexible static blog generator
-|Racket |Frog |Static blog generator
-|Racket |Pollen |Book-publishing system
-|Julia |Franklin |Flexible static site generator
-|Julia |Publish |Documentation publishing system
-|Julia |Documenter |Documentation generator for packages
-|Scala |Laika |Text markup transformer and site generator
-|Scala |Orchid |Documentation and static site engine
-|Scala |ScalaTex |Typesetting with Scala
-|F# |Fornax |Scriptable static site generator
-|OCaml |YOCaml |Static site generator in OCaml
-|Nim |Nimrod |Static site builder
-|D |Reggae |Build system for D language
-|D |Marmot |Static site generator
-|Ada |StaticWebPages |Web page generator
-|Erlang |Zotonic |Web framework and CMS
-|Erlang |Wub |Web utilities
+|**Computational scientists**
+|Publish research with embedded numerical results, signal plots, and matrix computations
+
+|**MATLAB refugees**
+|Open-source alternative with no license fees, vendor lock-in, or proprietary restrictions
+
+|**Lab notebook maintainers**
+|Reproducible documentation that executes inline — results update when data changes
+
+|**Technical writers**
+|Scientific documents with live computation, not static screenshots of results
 |===
+
+== Why SciLab
+
+SciLab brings numerical computing to documentation. Four properties make it distinctive:
+
+**Matrix-native computation** — First-class matrix operations, linear algebra, and array mathematics. Documentation includes live numerical results, not copy-pasted output.
+
+**Open scientific ecosystem** — ATOMS package manager provides signal processing, optimization, statistics, and control systems. FOSS from Inria/ESI with no commercial encumbrance.
+
+**Xcos block diagrams** — Visual modeling for control systems and signal flow renders directly into documentation. Hybrid simulation combines continuous and discrete dynamics.
+
+**Scilab-to-C compilation** — Performance-critical sections compile to native code. Documentation can include benchmarks that actually run.
+
+== Quick Start
+
+[source,bash]
+----
+# Ensure SciLab is installed
+scilab-cli --version
+
+# Initialize a new lab notebook site
+labnote init my-research
+
+# Build the site (executes all .sce blocks)
+labnote build
+
+# Serve with live reload
+labnote serve
+----
 
 == Architecture
 
-labnote-ssg serves as a satellite implementation in the poly-ssg-mcp ecosystem:
-
 ....
-                    ┌─────────────────────┐
-                    │   poly-ssg-mcp      │
-                    │   (Central Hub)     │
-                    └──────────┬──────────┘
-                               │ MCP Protocol
-            ┌──────────────────┼──────────────────┐
-            │                  │                  │
-    ┌───────┴───────┐  ┌───────┴───────┐  ┌───────┴───────┐
-    │  labnote-ssg  │  │   Other SSG   │  │   Other SSG   │
-    │  (Satellite)  │  │   Satellites  │  │   Satellites  │
-    └───────────────┘  └───────────────┘  └───────────────┘
+                ┌─────────────────────────────────────┐
+                │           labnote-ssg               │
+                │    SciLab Documentation Engine      │
+                └──────────────────┬──────────────────┘
+                                   │
+        ┌──────────────────────────┼──────────────────────────┐
+        │                          │                          │
+┌───────┴───────┐         ┌────────┴────────┐        ┌────────┴────────┐
+│    Parser     │         │    Executor     │        │    Renderer     │
+│  .adoc + .sce │         │  SciLab Engine  │        │   HTML + SVG    │
+└───────────────┘         └─────────────────┘        └─────────────────┘
+        │                          │                          │
+        └──────────────────────────┼──────────────────────────┘
+                                   │
+                    ┌──────────────┴──────────────┐
+                    │         Output              │
+                    │  Static site with embedded  │
+                    │  computed results & plots   │
+                    └─────────────────────────────┘
 ....
 
-== Security
+== Features
 
-* All adapters use safe command execution (`Deno.Command` with array arguments)
-* No shell string construction or `eval` usage
-* CodeQL SAST scanning enabled
-* Dependabot security updates configured
-* Full security policy available in link:SECURITY.md[SECURITY.md]
+* **Inline execution** — `.sce` code blocks run through SciLab, results embedded in output
+* **Figure generation** — Plots render to SVG, embedded directly in pages
+* **Incremental builds** — Only re-execute changed computational blocks
+* **Reproducibility** — Same source produces identical output on any machine with SciLab
+* **AsciiDoc base** — Full technical documentation capabilities (equations, tables, cross-refs)
 
-== Development
+== Computational Blocks
 
-=== Prerequisites
+[source,asciidoc]
+----
+[source,scilab]
+....
+// This block executes during build
+A = [1 2; 3 4];
+B = inv(A);
+disp(B);
+....
+----
 
-* https://deno.land[Deno] runtime (for adapter execution)
-* Individual SSG binaries as needed
+Results appear inline in the rendered documentation.
 
-=== Running Adapters
+== Integration
 
-Adapters are designed to be loaded by the poly-ssg-mcp hub. Each adapter exports:
+labnote-ssg operates as a satellite in the poly-ssg ecosystem:
 
-* `name` — SSG name
-* `language` — Implementation language
-* `description` — Brief description
-* `connect()` — Initialize connection
-* `disconnect()` — Clean up
-* `isConnected()` — Connection status
-* `tools` — Array of MCP-compatible tool definitions
+* **https://github.com/hyperpolymath/poly-ssg-mcp[poly-ssg-mcp]** — Central hub providing unified MCP interface
+* **https://github.com/hyperpolymath/poly-container-mcp[poly-container-mcp]** — Container runtime management
+* **https://github.com/hyperpolymath/poly-iac-mcp[poly-iac-mcp]** — Infrastructure as Code tooling
+
+The ReScript adapter exposes MCP tools for AI-assisted workflows:
+
+* `labnote_init` — Initialize new lab notebook project
+* `labnote_build` — Execute and render documentation
+* `labnote_serve` — Development server with live reload
+* `labnote_clean` — Remove generated artifacts
+
+== Requirements
+
+* **SciLab 2024.0+** — Core computation engine
+* **Deno 1.40+** — Adapter runtime (for MCP integration)
 
 == Contributing
 
